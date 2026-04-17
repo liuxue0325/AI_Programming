@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  media-server:
+    build: .
+    container_name: media-server
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/app/data
+      - /path/to/media:/app/media
+      - ./cache:/app/cache
+    environment:
+      - TZ=Asia/Shanghai
+      - API_PORT=8080
+      - TMDB_API_KEY=${TMDB_API_KEY}
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-stream
+    ports:
+      - "8090:8090"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./data/hls:/tmp/hls
+    depends_on:
+      - media-server
+    restart: unless-stopped

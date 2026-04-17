@@ -1,0 +1,72 @@
+// 按钮基础样式
+@mixin button-base {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: $border-radius-md;
+  transition: all 0.3s ease;
+  outline: none;
+  
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+// 按钮变体
+@mixin button-variant($color, $hover-color) {
+  color: #FFFFFF;
+  background-color: $color;
+  border-color: $color;
+  
+  &:hover {
+    background-color: $hover-color;
+    border-color: $hover-color;
+  }
+  
+  &:active {
+    background-color: darken($color, 10%);
+    border-color: darken($color, 10%);
+  }
+}
+
+// 卡片样式
+@mixin card {
+  background-color: $bg-color-light;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-sm;
+  padding: $spacing-lg;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}
+
+// 响应式工具
+@mixin responsive($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media (max-width: 576px) {
+      @content;
+    }
+  } @else if $breakpoint == 'md' {
+    @media (max-width: 768px) {
+      @content;
+    }
+  } @else if $breakpoint == 'lg' {
+    @media (max-width: 992px) {
+      @content;
+    }
+  } @else if $breakpoint == 'xl' {
+    @media (max-width: 1200px) {
+      @content;
+    }
+  }
+}

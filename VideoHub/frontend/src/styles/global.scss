@@ -1,0 +1,59 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+// 全局重置
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: $text-color;
+  background-color: $bg-color;
+}
+
+// 通用样式
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+// 媒体卡片样式
+.media-card {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// 按钮样式
+.btn {
+  @include button-base;
+  
+  &.btn-primary {
+    @include button-variant($primary-color, $primary-hover-color);
+  }
+  
+  &.btn-success {
+    @include button-variant($success-color, $success-hover-color);
+  }
+  
+  &.btn-danger {
+    @include button-variant($danger-color, $danger-hover-color);
+  }
+}
+
+// 响应式断点
+@media (max-width: 768px) {
+  .container {
+    padding: 0 10px;
+  }
+}
